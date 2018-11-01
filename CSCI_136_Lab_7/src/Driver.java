@@ -47,7 +47,7 @@ public class Driver extends Application{
 		
 		//Rest Button
 		Button reset = new Button("Restart");
-		reset.setLayoutX(740);
+		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
         
         //Button Action
@@ -63,7 +63,7 @@ public class Driver extends Application{
         });
 		
 		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, reset); //the group of objects that will be added to the window
-		Scene background = new Scene(myGroup, 800, 600, Color.WHITE);
+		Scene background = new Scene(myGroup, 1200, 800, Color.WHITE);
 		
 		primaryStage.setTitle("Game"); //title of window in the window's bar
 		primaryStage.setScene(background); //implements the "scene" (objects/background)

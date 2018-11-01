@@ -13,11 +13,11 @@ public class Player {
 	}
 	
 	public int setPlayerXPosition() {
-		return 350;
+		return 550;
 	}
 	
 	public int setPlayerYPosition() {
-		return 400;
+		return 600;
 	}
 	
 	public String playerToString() {
