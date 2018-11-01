@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,10 +14,10 @@ public class Driver extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		//Player image and position
 		Player myPlayer = new Player();
 		Image player = new Image(myPlayer.getPlayerImg());
@@ -24,7 +26,7 @@ public class Driver extends Application{
 		int playerY = myPlayer.setPlayerYPosition();
 		viewPlayer.setLayoutX(playerX);
 		viewPlayer.setLayoutY(playerY);
-		
+
 		//Enemy image and position
 		Enemy myEnemy = new Enemy();
 		Image enemy = new Image(myEnemy.getEnemyImg());
@@ -35,7 +37,7 @@ public class Driver extends Application{
 		viewEnemy.setLayoutY(enemyY);
 		viewEnemy.setFitHeight(190);
 		viewEnemy.setFitWidth(150);
-		
+
 		//Items and their positions
 		Items myItems = new Items();
 		Image item1 = new Image(myItems.getItem1Img());
@@ -45,26 +47,36 @@ public class Driver extends Application{
 		viewItem1.setLayoutX(item1X);
 		viewItem1.setLayoutY(item1Y);
 		
-		//Rest Button
+		Image item2 = new Image(myItems.getItem2Img());
+		ImageView viewItem2 = new ImageView(item2);
+		int item2X = myItems.setItemXPosition();
+		int item2Y = myItems.setItemYPosition();
+		viewItem2.setLayoutX(item2X);
+		viewItem2.setLayoutY(item2Y);
+
+		//Reset Button
 		Button reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
-        
-        //Button Action
-        reset.setOnAction(e -> {
-        	viewPlayer.setLayoutX(myPlayer.setPlayerXPosition());
-        	viewPlayer.setLayoutY(myPlayer.setPlayerYPosition());
-        	
-        	viewEnemy.setLayoutX(myEnemy.setEnemyXPosition());
-        	viewEnemy.setLayoutY(myEnemy.setEnemyYPosition());
-        	
-        	viewItem1.setLayoutX(myItems.setItemXPosition());
-        	viewItem1.setLayoutY(myItems.setItemYPosition());
-        });
-		
-		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, reset); //the group of objects that will be added to the window
+
+		//Button Action
+		reset.setOnAction(e -> {
+			viewPlayer.setLayoutX(myPlayer.setPlayerXPosition());
+			viewPlayer.setLayoutY(myPlayer.setPlayerYPosition());
+
+			viewEnemy.setLayoutX(myEnemy.setEnemyXPosition());
+			viewEnemy.setLayoutY(myEnemy.setEnemyYPosition());
+
+			viewItem1.setLayoutX(myItems.setItemXPosition());
+			viewItem1.setLayoutY(myItems.setItemYPosition());
+			
+			viewItem2.setLayoutX(myItems.setItemXPosition());
+			viewItem2.setLayoutY(myItems.setItemYPosition());
+		});
+
+		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, viewItem2, reset); //the group of objects that will be added to the window
 		Scene background = new Scene(myGroup, 1200, 800, Color.WHITE);
-		
+
 		primaryStage.setTitle("Game"); //title of window in the window's bar
 		primaryStage.setScene(background); //implements the "scene" (objects/background)
 		primaryStage.show(); //shows the window (would probably not appear w/o it)

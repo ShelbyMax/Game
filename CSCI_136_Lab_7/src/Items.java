@@ -30,7 +30,7 @@ public class Items {
 	
 	public int setItemXPosition() {
 		Random myRand = new Random();
-		//Used to generate two random integers between 1 and 750
+		//Used to generate two random integers between 1 and 1150
 		int randomNumber = myRand.nextInt(1150)+1;
 		
 		return randomNumber;
@@ -38,7 +38,7 @@ public class Items {
 	
 	public int setItemYPosition() {
 		Random myRand = new Random();
-		//Used to generate two random integers between 1 and 550
+		//Used to generate two random integers between 1 and 750
 		int randomNumber = myRand.nextInt(750)+1;
 		
 		return randomNumber;
