@@ -11,12 +11,16 @@ public class Enemy {
 		 if (r1TopLeftX < r2BottomRightX && r1BottomRightX > r2TopLeftX&& r1TopLeftY < r2BottomRightY && r1BottomRightY > r2TopLeftY)  
 		{   return true;  }  else  {   return false;  } }
 	
-	public int setEnemyPosition() {
+	public int setEnemyXPosition() {
+		return 0;
+	}
+	
+	public int setEnemyYPosition() {
 		return 0;
 	}
 
-	public String getEImgPath() {
-		return "";
+	public String getEnemyImg() {
+		return "file:src/timemaster.png";
 	}	
 
 	public String enemyToString() {

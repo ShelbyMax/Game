@@ -8,12 +8,16 @@ public class Player {
 		return 0;
 	}
 	
-	public String getPImgPath() {
-		return "";
+	public String getPlayerImg() {
+		return "file:src/Bunny.png";
 	}
 	
-	public int setPlayerPosition() {
-		return 0;
+	public int setPlayerXPosition() {
+		return 350;
+	}
+	
+	public int setPlayerYPosition() {
+		return 400;
 	}
 	
 	public String playerToString() {
