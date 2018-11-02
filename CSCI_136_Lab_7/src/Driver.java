@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -9,76 +10,124 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Driver extends Application{
+public class Driver extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	ImageView viewPlayer;
+	int x = 550, y = 600;
+
+	Scene gameScreen, start;
+
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) throws FileNotFoundException {
+
+		Movement playMove = new Movement();
 
 		//Player image and position
 		Player myPlayer = new Player();
 		Image player = new Image(myPlayer.getPlayerImg());
-		ImageView viewPlayer = new ImageView(player);
-		int playerX = myPlayer.setPlayerXPosition();
-		int playerY = myPlayer.setPlayerYPosition();
-		viewPlayer.setLayoutX(playerX);
-		viewPlayer.setLayoutY(playerY);
+		viewPlayer = new ImageView(player);
+		viewPlayer.setX(x);	viewPlayer.setY(y);
 
 		//Enemy image and position
 		Enemy myEnemy = new Enemy();
 		Image enemy = new Image(myEnemy.getEnemyImg());
 		ImageView viewEnemy = new ImageView(enemy);
-		int enemyX = myEnemy.setEnemyXPosition();
-		int enemyY = myEnemy.setEnemyYPosition();
+		int enemyX = myEnemy.setEnemyX();
+		int enemyY = myEnemy.setEnemyY();
 		viewEnemy.setLayoutX(enemyX);
 		viewEnemy.setLayoutY(enemyY);
 		viewEnemy.setFitHeight(190);
 		viewEnemy.setFitWidth(150);
 
 		//Items and their positions
-		Items myItems = new Items();
-		Image item1 = new Image(myItems.getItem1Img());
-		ImageView viewItem1 = new ImageView(item1);
-		int item1X = myItems.setItemXPosition();
-		int item1Y = myItems.setItemYPosition();
-		viewItem1.setLayoutX(item1X);
-		viewItem1.setLayoutY(item1Y);
-		
-		Image item2 = new Image(myItems.getItem2Img());
-		ImageView viewItem2 = new ImageView(item2);
-		int item2X = myItems.setItemXPosition();
-		int item2Y = myItems.setItemYPosition();
-		viewItem2.setLayoutX(item2X);
-		viewItem2.setLayoutY(item2Y);
+		Items myItem = new Items();
+		ArrayList<String> itemArray = new ArrayList<String>();
+		itemArray = Items.getImagePath();
 
-		//Reset Button
+		Image item1 = new Image(itemArray.get(0));
+		ImageView viewItem1 = new ImageView(item1);
+		viewItem1.setLayoutX(myItem.setItemX());
+		viewItem1.setLayoutY(myItem.setItemY());
+
+
+		Image item2 = new Image(itemArray.get(1));
+		ImageView viewItem2 = new ImageView(item2);
+		viewItem2.setLayoutX(myItem.setItemX());
+		viewItem2.setLayoutY(myItem.setItemY());
+
+		Image item3 = new Image(itemArray.get(2));
+		ImageView viewItem3 = new ImageView(item3);
+		viewItem3.setLayoutX(myItem.setItemX());
+		viewItem3.setLayoutY(myItem.setItemY());
+
+
+		Image item4 = new Image(itemArray.get(3));
+		ImageView viewItem4 = new ImageView(item4);
+		viewItem4.setLayoutX(myItem.setItemX());
+		viewItem4.setLayoutY(myItem.setItemY());
+
+		Image item5 = new Image(itemArray.get(4));
+		ImageView viewItem5 = new ImageView(item5);
+		viewItem5.setLayoutX(myItem.setItemX());
+		viewItem5.setLayoutY(myItem.setItemY());
+
+		Image item6 = new Image(itemArray.get(5));
+		ImageView viewItem6 = new ImageView(item6);
+		viewItem6.setLayoutX(myItem.setItemX());
+		viewItem6.setLayoutY(myItem.setItemY());
+
+		// Rest Button
 		Button reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
 
-		//Button Action
+		// Button Action
 		reset.setOnAction(e -> {
-			viewPlayer.setLayoutX(myPlayer.setPlayerXPosition());
-			viewPlayer.setLayoutY(myPlayer.setPlayerYPosition());
+			x = 550; y = 600;
+			viewPlayer.setX(x);
+			viewPlayer.setY(y);
+			playMove.setMovement(x, y, viewPlayer);
 
-			viewEnemy.setLayoutX(myEnemy.setEnemyXPosition());
-			viewEnemy.setLayoutY(myEnemy.setEnemyYPosition());
+			viewEnemy.setLayoutX(myEnemy.setEnemyX());
+			viewEnemy.setLayoutY(myEnemy.setEnemyY());
 
-			viewItem1.setLayoutX(myItems.setItemXPosition());
-			viewItem1.setLayoutY(myItems.setItemYPosition());
-			
-			viewItem2.setLayoutX(myItems.setItemXPosition());
-			viewItem2.setLayoutY(myItems.setItemYPosition());
+			viewItem1.setLayoutX(myItem.setItemX());
+			viewItem1.setLayoutY(myItem.setItemY());
+
+			viewItem2.setLayoutX(myItem.setItemX());
+			viewItem2.setLayoutY(myItem.setItemY());
+
+			viewItem3.setLayoutX(myItem.setItemX());
+			viewItem3.setLayoutY(myItem.setItemY());
+
+			viewItem4.setLayoutX(myItem.setItemX());
+			viewItem4.setLayoutY(myItem.setItemY());
+
+			viewItem5.setLayoutX(myItem.setItemX());
+			viewItem5.setLayoutY(myItem.setItemY());
+
+			viewItem6.setLayoutX(myItem.setItemX());
+			viewItem6.setLayoutY(myItem.setItemY());
 		});
 
-		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, viewItem2, reset); //the group of objects that will be added to the window
-		Scene background = new Scene(myGroup, 1200, 800, Color.WHITE);
+		// the group of objects that will be added to the window
+		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, viewItem2, viewItem3, viewItem4, viewItem5, viewItem6, reset); 
+		gameScreen = new Scene(myGroup, 1200, 800, Color.CORNSILK);
 
-		primaryStage.setTitle("Game"); //title of window in the window's bar
-		primaryStage.setScene(background); //implements the "scene" (objects/background)
-		primaryStage.show(); //shows the window (would probably not appear w/o it)
+		//Player Movement
+		playMove.setMovement(x, y, viewPlayer);
+		playMove.playerMovement(gameScreen);
+
+		//Start Screen: replace "primaryStage.setScene(gameScreen);" with "primaryStage.setScene(start);" to implement when ready
+		StartScreen begin = new StartScreen();
+		start = begin.Starting(primaryStage, gameScreen);
+
+		primaryStage.setTitle("Game"); // title of window in the window's bar
+		primaryStage.setScene(gameScreen); // implements the "scene" (objects/background)
+		primaryStage.show(); // shows the window (would probably not appear w/o it)
 	}
 }

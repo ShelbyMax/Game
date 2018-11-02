@@ -2,4 +2,5 @@ file:src/Amethyst.png
 file:src/Diamond.png
 file:src/Emerald.png
 file:src/Ruby.png
+file:src/Sapphire.png
 file:src/Topaz.png

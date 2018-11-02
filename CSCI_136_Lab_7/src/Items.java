@@ -1,47 +1,38 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
-public class Items {
-	private String itemImgPath;
-	private double pointsPerItem;
+public class Items  {
 	
-	public String getItem1Img() {
-		return "file:src/Amethyst.png";
+	Random myRand = new Random();
+
+	public static ArrayList<String> getImagePath() throws FileNotFoundException {
+		ArrayList<String> itemArray = new ArrayList<String>();
+		File myFile = new File("./src/ItemFile.txt");
+		Scanner myFileScanner = new Scanner(myFile);
+		while(myFileScanner.hasNextLine()) {
+			String line = myFileScanner.nextLine();
+			itemArray.add(line);
+		}
+		myFileScanner.close();
+		return itemArray;
+		
 	}
-	
-	public String getItem2Img() {
-		return "file:src/Diamond.png";
-	}
-	
-	public String getItem3Img() {
-		return "file:src/Emerald.png";
-	}
-	
-	public String getItem4Img() {
-		return "file:src/Ruby.png";
-	}
-	
-	public String getItem5Img() {
-		return "file:src/Sapphire.png";
-	}
-	
-	public String getItem6Img() {
-		return "file:src/Topaz.png";
-	}
-	
-	public int setItemXPosition() {
-		Random myRand = new Random();
+
+	public int setItemX() {
 		//Used to generate two random integers between 1 and 1150
-		int randomNumber = myRand.nextInt(1150)+1;
+		int randX = myRand.nextInt(1150)+1;
 		
-		return randomNumber;
+		return randX;
 	}
 	
-	public int setItemYPosition() {
-		Random myRand = new Random();
+	public int setItemY() {
 		//Used to generate two random integers between 1 and 750
-		int randomNumber = myRand.nextInt(750)+1;
+		int randY = myRand.nextInt(750)+1;
 		
-		return randomNumber;
+		return randY;
 	}
 	
 	public double setItemWorth() {

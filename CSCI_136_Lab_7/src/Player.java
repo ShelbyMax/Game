@@ -1,8 +1,5 @@
 
 public class Player {
-	private String avatarName;
-	private String playerImgPath;
-	private int numberItems;
 	
 	public int collectItems() {
 		return 0;
@@ -12,16 +9,12 @@ public class Player {
 		return "file:src/Bunny.png";
 	}
 	
-	public int setPlayerXPosition() {
+	public int setPlayerX() {
 		return 550;
 	}
 	
-	public int setPlayerYPosition() {
+	public int setPlayerY() {
 		return 600;
-	}
-	
-	public String playerToString() {
-		return "";
 	}
 
 }
