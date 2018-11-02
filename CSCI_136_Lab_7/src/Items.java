@@ -5,27 +5,27 @@ public class Items {
 	private double pointsPerItem;
 	
 	public String getItem1Img() {
-		return "file:src/Amethyst.JPG";
+		return "file:src/Amethyst.png";
 	}
 	
 	public String getItem2Img() {
-		return "file:src/Diamond.JPG";
+		return "file:src/Diamond.png";
 	}
 	
 	public String getItem3Img() {
-		return "file:src/Emerald.JPG";
+		return "file:src/Emerald.png";
 	}
 	
 	public String getItem4Img() {
-		return "file:src/Ruby.JPG";
+		return "file:src/Ruby.png";
 	}
 	
 	public String getItem5Img() {
-		return "file:src/Sapphire.JPG";
+		return "file:src/Sapphire.png";
 	}
 	
 	public String getItem6Img() {
-		return "file:src/Topaz.JPG";
+		return "file:src/Topaz.png";
 	}
 	
 	public int setItemXPosition() {

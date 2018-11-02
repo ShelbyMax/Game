@@ -20,7 +20,7 @@ public class Enemy {
 	}
 
 	public String getEnemyImg() {
-		return "file:src/timemaster.png";
+		return "file:src/TimeMaster.png";
 	}	
 
 	public String enemyToString() {
