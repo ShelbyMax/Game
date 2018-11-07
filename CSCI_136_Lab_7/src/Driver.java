@@ -40,14 +40,13 @@ public class Driver extends Application {
 		int enemyY = myEnemy.setEnemyY();
 		viewEnemy.setLayoutX(enemyX);
 		viewEnemy.setLayoutY(enemyY);
-		viewEnemy.setFitHeight(190);
-		viewEnemy.setFitWidth(150);
 
-		//Items and their positions
+		//Item Array
 		Items myItem = new Items();
 		ArrayList<String> itemArray = new ArrayList<String>();
 		itemArray = Items.getImagePath();
-
+		
+		//Items and their positions
 		Image item1 = new Image(itemArray.get(0));
 		ImageView viewItem1 = new ImageView(item1);
 		viewItem1.setLayoutX(myItem.setItemX());
@@ -80,7 +79,7 @@ public class Driver extends Application {
 		viewItem6.setLayoutX(myItem.setItemX());
 		viewItem6.setLayoutY(myItem.setItemY());
 
-		// Rest Button
+		// Reset Button
 		Button reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
@@ -115,7 +114,7 @@ public class Driver extends Application {
 		});
 
 		// the group of objects that will be added to the window
-		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, viewItem2, viewItem3, viewItem4, viewItem5, viewItem6, reset); 
+		Group myGroup = new Group(viewItem1, viewItem2, viewItem3, viewItem4, viewItem5, viewItem6, viewPlayer, viewEnemy, reset); 
 		gameScreen = new Scene(myGroup, 1200, 800, Color.CORNSILK);
 
 		//Player Movement
@@ -124,10 +123,10 @@ public class Driver extends Application {
 
 		//Start Screen: replace "primaryStage.setScene(gameScreen);" with "primaryStage.setScene(start);" to implement when ready
 		StartScreen begin = new StartScreen();
-		start = begin.Starting(primaryStage, gameScreen);
+		start = begin.Starting(primaryStage, gameScreen, viewPlayer);
 
 		primaryStage.setTitle("Game"); // title of window in the window's bar
-		primaryStage.setScene(gameScreen); // implements the "scene" (objects/background)
+		primaryStage.setScene(start); // implements the "scene" (objects/background)
 		primaryStage.show(); // shows the window (would probably not appear w/o it)
 	}
 }

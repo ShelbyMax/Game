@@ -18,7 +18,6 @@ public class Items  {
 		}
 		myFileScanner.close();
 		return itemArray;
-		
 	}
 
 	public int setItemX() {

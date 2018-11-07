@@ -6,6 +6,7 @@ public class Player {
 	}
 	
 	public String getPlayerImg() {
+		
 		return "file:src/Bunny.png";
 	}
 	
