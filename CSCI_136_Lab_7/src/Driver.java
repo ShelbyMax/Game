@@ -18,7 +18,8 @@ public class Driver extends Application {
 
 	ImageView viewPlayer;
 	int x = 550, y = 600;
-
+	int enemyX = 0, enemyY= 0;
+	ImageView viewEnemy;
 	Scene gameScreen, start;
 
 	@Override
@@ -35,11 +36,9 @@ public class Driver extends Application {
 		//Enemy image and position
 		Enemy myEnemy = new Enemy();
 		Image enemy = new Image(myEnemy.getEnemyImg());
-		ImageView viewEnemy = new ImageView(enemy);
-		int enemyX = myEnemy.setEnemyX();
-		int enemyY = myEnemy.setEnemyY();
-		viewEnemy.setLayoutX(enemyX);
-		viewEnemy.setLayoutY(enemyY);
+		viewEnemy = new ImageView(enemy);
+		viewEnemy.setX(enemyX);
+		viewEnemy.setY(enemyY);
 
 		//Item Array
 		Items myItem = new Items();
@@ -63,7 +62,6 @@ public class Driver extends Application {
 		viewItem3.setLayoutX(myItem.setItemX());
 		viewItem3.setLayoutY(myItem.setItemY());
 
-
 		Image item4 = new Image(itemArray.get(3));
 		ImageView viewItem4 = new ImageView(item4);
 		viewItem4.setLayoutX(myItem.setItemX());
@@ -79,20 +77,23 @@ public class Driver extends Application {
 		viewItem6.setLayoutX(myItem.setItemX());
 		viewItem6.setLayoutY(myItem.setItemY());
 
-		// Reset Button
+		//Reset Button
 		Button reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
 
-		// Button Action
+		//Button Action
 		reset.setOnAction(e -> {
 			x = 550; y = 600;
 			viewPlayer.setX(x);
 			viewPlayer.setY(y);
-			playMove.setMovement(x, y, viewPlayer);
-
-			viewEnemy.setLayoutX(myEnemy.setEnemyX());
-			viewEnemy.setLayoutY(myEnemy.setEnemyY());
+			
+			enemyX = 0;
+			enemyY = 0;
+			viewEnemy.setX(enemyX);
+			viewEnemy.setY(enemyY);
+			
+			playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 
 			viewItem1.setLayoutX(myItem.setItemX());
 			viewItem1.setLayoutY(myItem.setItemY());
@@ -113,15 +114,16 @@ public class Driver extends Application {
 			viewItem6.setLayoutY(myItem.setItemY());
 		});
 
-		// the group of objects that will be added to the window
+		//The group of objects that will be added to the window
 		Group myGroup = new Group(viewItem1, viewItem2, viewItem3, viewItem4, viewItem5, viewItem6, viewPlayer, viewEnemy, reset); 
 		gameScreen = new Scene(myGroup, 1200, 800, Color.CORNSILK);
 
-		//Player Movement
-		playMove.setMovement(x, y, viewPlayer);
+		//Movement
+		playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 		playMove.playerMovement(gameScreen);
-
-		//Start Screen: replace "primaryStage.setScene(gameScreen);" with "primaryStage.setScene(start);" to implement when ready
+		playMove.enemyMovement(gameScreen);
+		
+		//Start Screen
 		StartScreen begin = new StartScreen();
 		start = begin.Starting(primaryStage, gameScreen, viewPlayer);
 

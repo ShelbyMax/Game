@@ -4,9 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Items  {
-	
+import javafx.geometry.Bounds;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+
+public class Items {
+
+	private int score = 0;
 	Random myRand = new Random();
+	Movement move = new Movement();
+	Game myGame = new Game();
 
 	public static ArrayList<String> getImagePath() throws FileNotFoundException {
 		ArrayList<String> itemArray = new ArrayList<String>();
@@ -38,4 +45,92 @@ public class Items  {
 		return 0.0;
 	}
 
+	public int item1Collision(Scene gameScreen, ImageView viewItem1) {
+		Bounds item1Bounds = viewItem1.getBoundsInParent();
+		int x = (int)(viewItem1.getLayoutX());
+		int y = (int)(viewItem1.getLayoutY());
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (item1Bounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (item1Bounds.getHeight()));
+		
+		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
+			score =+ 1;
+		}
+		return score;
+	}
+	public int item2Collision(Scene gameScreen, ImageView viewItem2) {
+		Bounds item2Bounds = viewItem2.getBoundsInParent();
+		int x = (int)(viewItem2.getLayoutX());
+		int y = (int)(viewItem2.getLayoutY());
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (item2Bounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (item2Bounds.getHeight()));
+		
+		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
+			score =+ 1;
+		}
+		return score;
+	}
+	public int item3Collision(Scene gameScreen, ImageView viewItem3) {
+		Bounds itemBounds = viewItem3.getBoundsInParent();
+		int x = (int)(viewItem3.getLayoutX());
+		int y = (int)(viewItem3.getLayoutY());
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
+		
+		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
+			score =+ 1;
+		}
+		return score;
+	}
+	public int item4Collision(Scene gameScreen, ImageView viewItem4) {
+		Bounds itemBounds = viewItem4.getBoundsInParent();
+		int x = (int)(viewItem4.getLayoutX());
+		int y = (int)(viewItem4.getLayoutY());
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
+		
+		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
+			score =+ 1;
+		}
+		return score;
+	}
+	public int item5Collision(Scene gameScreen, ImageView viewItem5) {
+		Bounds itemBounds = viewItem5.getBoundsInParent();
+		int x = (int)(viewItem5.getLayoutX());
+		int y = (int)(viewItem5.getLayoutY());
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
+		
+		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
+			score =+ 1;
+		}
+		return score;
+	}
+
+	private boolean areRectsColliding(int r1TopLeftX, int r1BottomRightX, int r1TopLeftY, int r1BottomRightY,
+			int r2TopLeftX, int r2BottomRightX, int r2TopLeftY, int r2BottomRightY) {
+		System.out.println("BottomRight 1 = (" + r1BottomRightX + ", " + r1BottomRightY + ")");
+		System.out.println("BottomRight 2 = (" + r2BottomRightX + ", " + r2BottomRightY + ")");
+
+		System.out.println("TopLeft 1 = (" + r1TopLeftX + ", " + r1TopLeftY + ")");
+		System.out.println("TopLeft 2 = (" + r2TopLeftX + ", " + r2TopLeftY + ")");
+
+		if (r1TopLeftX < r2BottomRightX && r1BottomRightX > r2TopLeftX && r1TopLeftY < r2BottomRightY
+				&& r1BottomRightY > r2TopLeftY) {
+			System.out.println("Returning true");
+			return true;
+		} else {
+			System.out.println("Returning false");
+			return false;
+		}
+	}
 }
