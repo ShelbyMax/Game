@@ -36,6 +36,11 @@ public class Items {
 	public int item5BottomRightX;
 	public int item5TopLeftY;
 	public int item5BottomRightY;
+	//item 6
+	public int item6TopLeftX;
+	public int item6BottomRightX;
+	public int item6TopLeftY;
+	public int item6BottomRightY;
 
 	//Array to read in image locations for items from "ItemFile.txt"
 	public static ArrayList<String> getImagePath() throws FileNotFoundException {
@@ -79,6 +84,7 @@ public class Items {
 		item1TopLeftY = (int) (y);
 		item1BottomRightY = (int) (y + (item1Bounds.getHeight()));
 	}
+	
 	public void item2Collision(Scene gameScreen, ImageView viewItem2) {
 		Bounds item2Bounds = viewItem2.getBoundsInParent();
 		int x = (int)(viewItem2.getLayoutX());
@@ -88,6 +94,7 @@ public class Items {
 		item2TopLeftY = (int) (y);
 		item2BottomRightY = (int) (y + (item2Bounds.getHeight()));
 	}
+	
 	public void  item3Collision(Scene gameScreen, ImageView viewItem3) {
 		Bounds itemBounds = viewItem3.getBoundsInParent();
 		int x = (int)(viewItem3.getLayoutX());
@@ -107,6 +114,7 @@ public class Items {
 		item4TopLeftY = (int) (y);
 		item4BottomRightY = (int) (y + (itemBounds.getHeight()));
 	}
+	
 	public void item5Collision(Scene gameScreen, ImageView viewItem5) {
 		Bounds itemBounds = viewItem5.getBoundsInParent();
 		int x = (int)(viewItem5.getLayoutX());
@@ -115,7 +123,17 @@ public class Items {
 		item5BottomRightX = (int) (x + (itemBounds.getWidth()));
 		item5TopLeftY = (int) (y);
 		item5BottomRightY = (int) (y + (itemBounds.getHeight()));
-	}	
+	}
+	
+	public void item6Collision(Scene gameScreen, ImageView viewItem6) {
+		Bounds itemBounds = viewItem6.getBoundsInParent();
+		int x = (int)(viewItem6.getLayoutX());
+		int y = (int)(viewItem6.getLayoutY());
+		item6TopLeftX = (int) (x);
+		item6BottomRightX = (int) (x + (itemBounds.getWidth()));
+		item6TopLeftY = (int) (y);
+		item6BottomRightY = (int) (y + (itemBounds.getHeight()));
+	}
 	
 }
 	

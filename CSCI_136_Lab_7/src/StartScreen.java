@@ -44,6 +44,7 @@ public class StartScreen {
 		birdBttn.setOnAction(e ->{	Image player2 = new Image("file:src/Bird.png");
 		viewPlayer.setImage(player2);
 		selected.setX(918); selected.setY(150);});
+		
 		//Avatar Preview Image (Bunny)
 		Image bunny = new Image("file:src/Bunny.png");
 		ImageView viewBunny = new ImageView(bunny);
