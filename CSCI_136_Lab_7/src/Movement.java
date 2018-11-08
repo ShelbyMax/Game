@@ -68,7 +68,7 @@ public class Movement {
 			isColliding = false;
 			System.out.println("false");
 		}
-		
+
 		viewPlayer.setX(x);
 		viewPlayer.setY(y);
 		viewEnemy.setX(enemyX);

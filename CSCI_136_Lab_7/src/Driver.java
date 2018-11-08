@@ -20,7 +20,8 @@ public class Driver extends Application {
 	int x = 550, y = 600;
 	int enemyX = 0, enemyY= 0;
 	ImageView viewEnemy;
-	Scene gameScreen, start;
+	Button reset;
+	Scene gameScreen, start, end;
 
 	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
@@ -44,7 +45,7 @@ public class Driver extends Application {
 		Items myItem = new Items();
 		ArrayList<String> itemArray = new ArrayList<String>();
 		itemArray = Items.getImagePath();
-		
+
 		//Items and their positions
 		Image item1 = new Image(itemArray.get(0));
 		ImageView viewItem1 = new ImageView(item1);
@@ -78,7 +79,7 @@ public class Driver extends Application {
 		viewItem6.setLayoutY(myItem.setItemY());
 
 		//Reset Button
-		Button reset = new Button("Restart");
+		reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
 
@@ -87,12 +88,12 @@ public class Driver extends Application {
 			x = 550; y = 600;
 			viewPlayer.setX(x);
 			viewPlayer.setY(y);
-			
+
 			enemyX = 0;
 			enemyY = 0;
 			viewEnemy.setX(enemyX);
 			viewEnemy.setY(enemyY);
-			
+
 			playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 
 			viewItem1.setLayoutX(myItem.setItemX());
@@ -122,10 +123,14 @@ public class Driver extends Application {
 		playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 		playMove.playerMovement(gameScreen);
 		playMove.enemyMovement(gameScreen);
-		
+
 		//Start Screen
 		StartScreen begin = new StartScreen();
 		start = begin.Starting(primaryStage, gameScreen, viewPlayer);
+		
+		//End Screen (Needs to be implemented by colliding with enemy or collecting all items)
+		EndScreen gameOver = new EndScreen();
+		end = gameOver.Ending(primaryStage, gameScreen, start);
 
 		primaryStage.setTitle("Game"); // title of window in the window's bar
 		primaryStage.setScene(start); // implements the "scene" (objects/background)

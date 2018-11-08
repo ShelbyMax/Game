@@ -15,6 +15,7 @@ public class Items {
 	Movement move = new Movement();
 	Game myGame = new Game();
 
+	//Array to read in image locations for items from "ItemFile.txt"
 	public static ArrayList<String> getImagePath() throws FileNotFoundException {
 		ArrayList<String> itemArray = new ArrayList<String>();
 		File myFile = new File("./src/ItemFile.txt");
@@ -27,20 +28,22 @@ public class Items {
 		return itemArray;
 	}
 
+	//Randomly generates an item image's X-coordinate
 	public int setItemX() {
 		//Used to generate two random integers between 1 and 1150
 		int randX = myRand.nextInt(1150)+1;
-		
+
 		return randX;
 	}
-	
+
+	//Randomly generates an item image's Y-coordinate
 	public int setItemY() {
 		//Used to generate two random integers between 1 and 750
 		int randY = myRand.nextInt(750)+1;
-		
+
 		return randY;
 	}
-	
+
 	public double setItemWorth() {
 		return 0.0;
 	}
@@ -53,7 +56,7 @@ public class Items {
 		int itemBottomRightX = (int) (x + (item1Bounds.getWidth()));
 		int itemTopLeftY = (int) (y);
 		int itemBottomRightY = (int) (y + (item1Bounds.getHeight()));
-		
+
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
 		}
@@ -67,7 +70,7 @@ public class Items {
 		int itemBottomRightX = (int) (x + (item2Bounds.getWidth()));
 		int itemTopLeftY = (int) (y);
 		int itemBottomRightY = (int) (y + (item2Bounds.getHeight()));
-		
+
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
 		}
@@ -81,7 +84,7 @@ public class Items {
 		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
 		int itemTopLeftY = (int) (y);
 		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
-		
+
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
 		}
@@ -95,7 +98,7 @@ public class Items {
 		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
 		int itemTopLeftY = (int) (y);
 		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
-		
+
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
 		}
@@ -109,7 +112,7 @@ public class Items {
 		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
 		int itemTopLeftY = (int) (y);
 		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
-		
+
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
 		}
