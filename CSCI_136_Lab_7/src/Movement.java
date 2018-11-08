@@ -8,15 +8,18 @@ import javafx.scene.input.KeyEvent;
 public class Movement {
 	private ImageView viewEnemy;
 	private ImageView viewPlayer;
+	Items myItem = new Items();
 	private int x = 550, y = 600;
 	private double enemyX;
 	private double enemyY;
 	public boolean isColliding;
-	public int playerTopLeftX;
+	public int score;
+	public int highScore1;
+	public int playerTopLeftX;	
 	public int playerBottomRightX;
 	public int playerTopLeftY;
 	public int playerBottomRightY;
-
+	
 	public void setMovement(int x, int y, int enemyX, int enemyY, ImageView viewPlayer, ImageView viewEnemy) {
 		this.viewPlayer = viewPlayer;
 		this.viewEnemy = viewEnemy;
@@ -68,11 +71,31 @@ public class Movement {
 			isColliding = false;
 			System.out.println("false");
 		}
-
+		
+		
+		if(areRectsColliding(myItem.item1TopLeftX, myItem.item1BottomRightX, myItem.item1TopLeftY, myItem.item1BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item2TopLeftX, myItem.item2BottomRightX, myItem.item2TopLeftY, myItem.item2BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item3TopLeftX, myItem.item3BottomRightX, myItem.item3TopLeftY, myItem.item3BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item4TopLeftX, myItem.item4BottomRightX, myItem.item4TopLeftY, myItem.item4BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item5TopLeftX, myItem.item5BottomRightX, myItem.item5TopLeftY, myItem.item5BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		
+		
+	
 		viewPlayer.setX(x);
 		viewPlayer.setY(y);
 		viewEnemy.setX(enemyX);
 		viewEnemy.setY(enemyY);
+		
 
 	}
 

@@ -1,6 +1,5 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -8,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Driver extends Application {
@@ -20,13 +20,14 @@ public class Driver extends Application {
 	int x = 550, y = 600;
 	int enemyX = 0, enemyY= 0;
 	ImageView viewEnemy;
-	Button reset;
 	Scene gameScreen, start, end;
+	Text highScoreText;
 
 	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
 
 		Movement playMove = new Movement();
+		highScoreText = new Text(1000, 10, "");
 
 		//Player image and position
 		Player myPlayer = new Player();
@@ -45,7 +46,7 @@ public class Driver extends Application {
 		Items myItem = new Items();
 		ArrayList<String> itemArray = new ArrayList<String>();
 		itemArray = Items.getImagePath();
-
+		
 		//Items and their positions
 		Image item1 = new Image(itemArray.get(0));
 		ImageView viewItem1 = new ImageView(item1);
@@ -79,7 +80,7 @@ public class Driver extends Application {
 		viewItem6.setLayoutY(myItem.setItemY());
 
 		//Reset Button
-		reset = new Button("Restart");
+		Button reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
 
@@ -88,12 +89,12 @@ public class Driver extends Application {
 			x = 550; y = 600;
 			viewPlayer.setX(x);
 			viewPlayer.setY(y);
-
+			
 			enemyX = 0;
 			enemyY = 0;
 			viewEnemy.setX(enemyX);
 			viewEnemy.setY(enemyY);
-
+			
 			playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 
 			viewItem1.setLayoutX(myItem.setItemX());
@@ -123,7 +124,10 @@ public class Driver extends Application {
 		playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 		playMove.playerMovement(gameScreen);
 		playMove.enemyMovement(gameScreen);
-
+		//HighScoreScreen, Move to end screen.
+		Game myGame = new Game();
+		myGame.highscore1 = playMove.highScore1;
+		highScoreText.setText(myGame.toString());
 		//Start Screen
 		StartScreen begin = new StartScreen();
 		start = begin.Starting(primaryStage, gameScreen, viewPlayer);
