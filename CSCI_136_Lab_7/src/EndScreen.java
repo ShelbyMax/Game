@@ -14,29 +14,34 @@ public class EndScreen {
 
 	public Scene Ending(Stage primaryStage, Scene gameScreen, Scene start){
 		
-		Movement myMove = new Movement();
-
+		//High Score Text
+		Text highScore = new Text("High Score: 6");
+		highScore.setScaleX(3);	highScore.setScaleY(3);
+		highScore.setX(535); 	highScore.setY(175);
+		
 		//Score Text
 		Text finalScores = new Text("Score: " + score + " " + playerName);
 		finalScores.setScaleX(2);	finalScores.setScaleY(2);
-		finalScores.setX(515); 	finalScores.setY(175);
+		finalScores.setX(535); 	finalScores.setY(290);
 
 		//Label, text-field, and button to enter player name
 		Label entryLabel = new Label("Enter Name: ");
 		entryLabel.setLayoutX(385); entryLabel.setLayoutY(385);
 		entryLabel.setScaleX(1.25);	entryLabel.setScaleY(1.25);
-
+		
+		//Score text for the player's name
 		TextField enterName = new TextField();
 		enterName.setLayoutX(500); enterName.setLayoutY(380);
 		enterName.setScaleX(1.15);  enterName.setScaleY(1.15);
-
+		
+		//Reads in the name from the text field
 		Button enter = new Button("Enter"); 
 		enter.setLayoutX(720); enter.setLayoutY(380);
 		enter.setScaleX(1.15);  enter.setScaleY(1.15);
-		//Needs to add name variable to score method
+		//Adds name next to the score method
 		enter.setOnAction(e -> { 
 			playerName = enterName.getText();
-			finalScores.setText("Score: " + myMove.totalScore + " " + playerName);
+			finalScores.setText("Score: " + score + " " + playerName);
 			//Clear TextFields for new information when added
 			enterName.clear();
 		});
@@ -53,7 +58,7 @@ public class EndScreen {
 		credits.setX(950); 	credits.setY(750);
 
 		//The group of objects that will be added to the window
-		Group root = new Group(finalScores, entryLabel, enterName, enter, play, credits);
+		Group root = new Group(highScore, finalScores, entryLabel, enterName, enter, play, credits);
 		Scene end = new Scene(root, 1200, 800, Color.LIGHTSEAGREEN);
 		return end; //Returns code to use to set the scene
 	}

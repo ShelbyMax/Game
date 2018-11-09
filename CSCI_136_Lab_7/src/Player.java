@@ -1,10 +1,6 @@
 
 public class Player {
 	
-	public int collectItems() {
-		return 0;
-	}
-	
 	//Sets player avatar to be the first avatar choice (Bunny)
 	public String getPlayerImg() {
 		

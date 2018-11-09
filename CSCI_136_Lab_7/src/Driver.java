@@ -28,7 +28,6 @@ public class Driver extends Application {
 	public void start(Stage primaryStage) throws FileNotFoundException {
 
 		Movement playMove = new Movement();
-		highScoreText = new Text(1000, 10, "");
 
 		//Player image and position
 		Player myPlayer = new Player();
@@ -145,10 +144,6 @@ public class Driver extends Application {
 		playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy, primaryStage, start, gameScreen);
 		playMove.playerMovement(gameScreen);
 		playMove.enemyMovement(gameScreen);
-		//HighScoreScreen, Move to end screen.
-		Game myGame = new Game();
-		myGame.highscore1 = playMove.highScore1;
-		highScoreText.setText(myGame.toString());
 		
 		//Start Screen
 		StartScreen begin = new StartScreen();

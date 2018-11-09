@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import javafx.scene.image.ImageView;
 
 public class Items {
 
-	private int score = 0;
 	Random myRand = new Random();
 	//item 1
 	public int item1TopLeftX;
@@ -71,10 +71,7 @@ public class Items {
 		return randY;
 	}
 	
-	public double setItemWorth() {
-		return 0.0;
-	}
-
+	//Item 1 image bounds
 	public void item1Collision (Scene gameScreen, ImageView viewItem1) {
 		Bounds item1Bounds = viewItem1.getBoundsInParent();
 		int x = (int)(viewItem1.getLayoutX());
@@ -85,6 +82,7 @@ public class Items {
 		item1BottomRightY = (int) (y + (item1Bounds.getHeight()));
 	}
 	
+	//Item 2 image bounds
 	public void item2Collision(Scene gameScreen, ImageView viewItem2) {
 		Bounds item2Bounds = viewItem2.getBoundsInParent();
 		int x = (int)(viewItem2.getLayoutX());
@@ -95,6 +93,7 @@ public class Items {
 		item2BottomRightY = (int) (y + (item2Bounds.getHeight()));
 	}
 	
+	//Item 3 image bounds
 	public void  item3Collision(Scene gameScreen, ImageView viewItem3) {
 		Bounds itemBounds = viewItem3.getBoundsInParent();
 		int x = (int)(viewItem3.getLayoutX());
@@ -104,7 +103,8 @@ public class Items {
 		item3TopLeftY = (int) (y);
 		item3BottomRightY = (int) (y + (itemBounds.getHeight()));
 	}
-
+	
+	//Item 4 image bounds
 	public void item4Collision(Scene gameScreen, ImageView viewItem4) {
 		Bounds itemBounds = viewItem4.getBoundsInParent();
 		int x = (int)(viewItem4.getLayoutX());
@@ -115,6 +115,7 @@ public class Items {
 		item4BottomRightY = (int) (y + (itemBounds.getHeight()));
 	}
 	
+	//Item 5 image bounds
 	public void item5Collision(Scene gameScreen, ImageView viewItem5) {
 		Bounds itemBounds = viewItem5.getBoundsInParent();
 		int x = (int)(viewItem5.getLayoutX());
@@ -125,6 +126,7 @@ public class Items {
 		item5BottomRightY = (int) (y + (itemBounds.getHeight()));
 	}
 	
+	//Item 6 image bounds
 	public void item6Collision(Scene gameScreen, ImageView viewItem6) {
 		Bounds itemBounds = viewItem6.getBoundsInParent();
 		int x = (int)(viewItem6.getLayoutX());
@@ -136,6 +138,4 @@ public class Items {
 	}
 	
 }
-	
-
 	

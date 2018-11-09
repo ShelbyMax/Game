@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class Movement {
 	Items myItem = new Items();
+	private EndScreen myEnd = new EndScreen();
 	private ImageView viewEnemy, viewPlayer;
 	private int x = 550, y = 600;
 	private double enemyX, enemyY;
@@ -21,6 +22,7 @@ public class Movement {
 	public int playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY;
 	
 	
+	//set variables to be the same as in Driver
 	public void setMovement(int x, int y, int enemyX, int enemyY, ImageView viewPlayer, ImageView viewEnemy, Stage primaryStage, Scene start, Scene gameScreen) {
 		this.viewPlayer = viewPlayer;
 		this.viewEnemy = viewEnemy;
@@ -33,6 +35,7 @@ public class Movement {
 		this.gameScreen = gameScreen;
 	}
 	
+	//Set items to be the same as in driver
 	public void setItems(ImageView viewItem1, ImageView viewItem2, ImageView viewItem3, ImageView viewItem4, ImageView viewItem5, ImageView viewItem6) {
 		this.viewItem1 = viewItem1;
 		this.viewItem2 = viewItem2;
@@ -41,14 +44,17 @@ public class Movement {
 		this.viewItem5 = viewItem5;
 		this.viewItem6 = viewItem6;
 	}
-
+	
+	//Listener for player movement
 	public void playerMovement(Scene gameScreen) {
 		gameScreen.setOnKeyPressed(this::listenUp);
 	}
-
+	
+	//Action for player/enemy movement, detectting collision, collecting items, and adding the score
 	public void listenUp(KeyEvent event) {
 		KeyCode myCode = event.getCode();
-
+		
+		//Player and enemy movement
 		if (myCode == KeyCode.LEFT) {
 			x -= 10;
 			enemyX += 10;
@@ -62,30 +68,33 @@ public class Movement {
 			y -= 10;
 			enemyY += 10;
 		}
-
+		
+		//Player image bounds
 		Bounds playerBounds = viewPlayer.getBoundsInParent();
 		int playerTopLeftX = (int) (x);
 		int playerBottomRightX = (int) (x + (playerBounds.getWidth()));
 		int playerTopLeftY = (int) (y);
 		int playerBottomRightY = (int) (y + (playerBounds.getHeight()));
-
+		
+		//Enemy image bounds
 		Bounds enemyBounds = viewEnemy.getBoundsInParent();
 		int enemyTopLeftX = (int) (enemyX);
 		int enemyBottomRightX = (int) (enemyX + (enemyBounds.getWidth()));
 		int enemyTopLeftY = (int) (enemyY);
 		int enemyBottomRightY = (int) (enemyY + (enemyBounds.getHeight()));
-
+		
+		//Player-Enemy collision detection (changes to "EndScreen" when colliding)
 		if (areRectsColliding(playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY, enemyTopLeftX,
 				enemyBottomRightX, enemyTopLeftY, enemyBottomRightY) == true) {
 			isColliding = true;
-			EndScreen gameOver = new EndScreen();
-			Scene end = gameOver.Ending(primaryStage, gameScreen, start);
+			Scene end = myEnd.Ending(primaryStage, gameScreen, start);
 			primaryStage.setScene(end);
 		} 
 		else {
 			isColliding = false;
 		}
 		
+		//Player-Item collision detection (removes item image when colliding and adds to the score)
 		myItem.item1Collision(gameScreen, viewItem1);
 		if(areRectsColliding(myItem.item1TopLeftX, myItem.item1BottomRightX, myItem.item1TopLeftY, myItem.item1BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
 			viewItem1.setImage(null);
@@ -117,36 +126,40 @@ public class Movement {
 			score6 =1;
 		}
 		
+		//Total score made up from each item's collision
 		totalScore = score1+score2+score3+score4+score5+score6;
-		EndScreen myEnd = new EndScreen();
+		
+		//Setting score in EndScreen
 		myEnd.score = totalScore;
 		
+		//Changes to the end screen when all items are collected
 		if(totalScore == 6) {
-			EndScreen gameOver = new EndScreen();
-			Scene end = gameOver.Ending(primaryStage, gameScreen, start);
+			Scene end = myEnd.Ending(primaryStage, gameScreen, start);
 			primaryStage.setScene(end);
 		}
 		
+		//Sets Enemy and Player positions for the movement found at the top of this method
 		viewPlayer.setX(x);
 		viewPlayer.setY(y);
 		viewEnemy.setX(enemyX);
 		viewEnemy.setY(enemyY);
 	}
-
+	
+	//Listener for enemy movement
 	public void enemyMovement(Scene gameScreen) {
 		gameScreen.setOnKeyPressed(this::listenUp);
 	}
+	
+	//Collision code
+	private boolean areRectsColliding(int r1TopLeftX, int r1BottomRightX, int r1TopLeftY, int r1BottomRightY,
+			int r2TopLeftX, int r2BottomRightX, int r2TopLeftY, int r2BottomRightY) {
 
-	private boolean areRectsColliding(int playerTopLeftX, int playerBottomRightX, int playerTopLeftY, int playerBottomRightY,
-			int enemyTopLeftX, int enemyBottomRightX, int enemyTopLeftY, int enemyBottomRightY) {
-
-		if (playerTopLeftX < enemyBottomRightX && playerBottomRightX > enemyTopLeftX && playerTopLeftY <  enemyBottomRightY
-				&& playerBottomRightY > enemyTopLeftY) {
+		if (r1TopLeftX < r2BottomRightX && r1BottomRightX > r2TopLeftX && r1TopLeftY <  r2BottomRightY
+				&& r1BottomRightY > r2TopLeftY) {
 			return true;
 		} 
 		else {
 			return false;
 		}
 	}
-
 }
